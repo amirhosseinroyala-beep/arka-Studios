@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "banners"
+    label: "بنرهای شیشه‌ای"
+    folder: "content/banners"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "عنوان", name: "title", widget: "string" }
+      - { label: "توضیحات", name: "description", widget: "text" }
+      - { label: "آیکون", name: "icon", widget: "string" }
+      - { label: "لینک", name: "link", widget: "string" }
+      - { label: "تصویر بنر", name: "image", widget: "image" }
