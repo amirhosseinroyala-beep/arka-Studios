@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Arka Studios official</title>
+
+<!-- فونت‌های گوگل -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f1724;
+  --card:#0b1220;
+  --muted:#98a0b3;
+  --accent:#f6c84c;
+  --accent-2:#ffd77a;
+  --glass: rgba(255,255,255,0.04);
+  --text:#e6eef8;
+  --radius:14px;
+  --maxw:1200px;
+  --shadow: 0 8px 30px rgba(2,6,23,0.6);
+  --ease: cubic-bezier(.2,.9,.3,1);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Vazirmatn", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg,#071026 0%, #071827 50%, #0b1526 100%);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+  padding:32px 20px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+}
+
+.wrap{
+  width:100%;
+  max-width:var(--maxw);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:28px;
+}
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  position:sticky;
+  top:18px;
+  z-index:50;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;color:var(--text);
+}
+.logo{
+  width:48px;height:48px;border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  display:grid;place-items:center;
+  box-shadow: 0 6px 18px rgba(246,200,76,0.12), inset 0 -6px 14px rgba(255,255,255,0.05);
+  font-weight:800;color:#081018;
+  font-size:18px;
+}
+nav ul{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+nav li{position:relative;}
+nav a, nav button{
+  color:var(--muted);
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 12px;
+  border-radius:10px;
+  transition: all .22s var(--ease);
+  background:transparent;
+  border:none;
+  cursor:pointer;
+}
+nav a:hover, nav button:hover{
+  color:var(--text);
+  background:rgba(255,255,255,0.03);
+  transform:translateY(-3px);
+}
+
+/* منوی کشویی */
+.dropdown{
+  position:absolute;
+  top:100%;
+  right:0;
+  background:var(--card);
+  border-radius:10px;
+  overflow:hidden;
+  min-width:160px;
+  display:none;
+  box-shadow: 0 8px 26px rgba(0,0,0,0.5);
+  z-index:40;
+}
+.dropdown a{
+  display:block;
+  padding:10px 14px;
+  font-weight:500;
+  color:var(--muted);
+}
+.dropdown a:hover{
+  background:rgba(255,255,255,0.03);
+  color:var(--text);
+}
+
+.hero{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  padding:34px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+.hero-grid{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center}
+.hero h1{margin:0;font-size:34px;letter-spacing:0.2px}
+.hero p{color:var(--muted);margin-top:10px}
+.cta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:#081018;padding:12px 18px;border-radius:12px;border:0;font-weight:700;cursor:pointer;
+  box-shadow: 0 8px 26px rgba(246,200,76,0.12);
+  transition:transform .18s var(--ease);
+}
+.btn.secondary{
+  background:transparent;color:var(--text);border:1px solid rgba(255,255,255,0.06);
+  box-shadow:none;
+}
+.btn:active{transform:translateY(2px)}
+
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
+}
+
+.starfield{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen}
+.star{
+  position:absolute;width:8px;height:8px;border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 18px rgba(246,200,76,0.9);
+  opacity:.0;transform:scale(.4);
+  animation: twinkle 3s infinite;
+}
+@keyframes twinkle{
+  0%{opacity:0;transform:scale(.3)}
+  20%{opacity:1;transform:scale(1)}
+  60%{opacity:.4;transform:scale(.9)}
+  100%{opacity:0;transform:scale(.4)}
+}
+
+.infos{display:flex;flex-direction:column;gap:12px}
+.profile{
+  display:flex;gap:12px;align-items:center;
+}
+.avatar{
+  width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,#0b1220,#061028);
+  border:1px solid rgba(255,255,255,0.03);display:grid;place-items:center;font-weight:800;
+  color:var(--accent);
+}
+.skill-pill{display:inline-block;padding:8px 10px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);font-weight:600;color:var(--muted)}
+
+section{display:grid;grid-template-columns:1fr 320px;gap:20px}
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.project{padding:14px;border-radius:12px;position:relative;overflow:hidden}
+.project h4{margin:0 0 6px 0}
+.project p{margin:0;color:var(--muted);font-size:14px}
+
+.testi{display:flex;flex-direction:column;gap:12px}
+
+form{display:grid;gap:10px}
+input,textarea,button{font-family:inherit}
+input,textarea{
+  padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);
+  background:transparent;color:var(--text);resize:vertical;min-height:44px;
+}
+textarea{min-height:110px}
+footer{display:flex;justify-content:space-between;align-items:center;padding:18px 12px;border-radius:12px;background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+
+@media (max-width:980px){
+  .hero-grid{grid-template-columns: 1fr}
+  section{grid-template-columns:1fr}
+  .projects{grid-template-columns:1fr}
+  nav ul{flex-direction:column;gap:6px}
+  .dropdown{right:auto;left:0;}
+}
+
+.float-shape{
+  position:absolute;border-radius:14px;opacity:.06;filter:blur(18px);transform:translateZ(0);
+}
+.float-a{width:220px;height:160px;right:-40px;top:-30px;background:linear-gradient(90deg,#f6c84c,#ffd77a)}
+.float-b{width:180px;height:120px;left:-50px;bottom:-50px;background:linear-gradient(90deg,#4fb3ff,#8ad0ff)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <a class="brand" href="#">
+    <div class="logo">AS</div>
+    <div>
+      <div style="font-weight:800">Arka Studios</div>
+      <div style="font-size:12px;color:var(--muted)">آرکا استودیو، توسعه کسب و کار شما به صورت خلاقانه ،سریع و تضمینی!</div>
+    </div>
+  </a>
+
+  <nav>
+    <ul>
+      <li>
+        <button class="drop-btn">خدمات ▼</button>
+        <div class="dropdown">
+          <a href="#services">طراحی UI/UX</a>
+          <a href="#services">Front-end</a>
+          <a href="#services">Back-end & DevOps</a>
+        </div>
+      </li>
+      <li><a href="#works">نمونه‌کار</a></li>
+      <li>
+        <button class="drop-btn">تیم ▼</button>
+        <div class="dropdown">
+          <a href="#team">علی جعفری</a>
+          <a href="#team">امیرحسین تقی زاده</a>
+          <a href="#team">زینب مروارید</a>
+        </div>
+      </li>
+      <li><a href="#contact">تماس</a></li>
+      <li><button class="btn secondary" id="themeToggle" title="تغییر تم">حالت روشن</button></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<main class="hero card" role="main" aria-labelledby="hero-title">
+  <div class="starfield" id="starfield" aria-hidden="true"></div>
+  <div class="float-shape float-a" aria-hidden="true"></div>
+  <div class="float-shape float-b" aria-hidden="true"></div>
+
+  <div class="hero-grid">
+    <div>
+      <h1 id="hero-title">طراحی وب حرفه ای و تجربه دیجیتال خلاقانه</h1>
+      <p>ما در Arka Studios تجربه ساخت مسیر حرفه ای کسب و کار شما ، تبلیغات حرفه ای ، مدیریت فضاهای مجازی شما ، تجربه ای کاربر محور ، طراحی برند محور ، سایت های واکنش گرا ، عقد قرارداد های رسمی با سازمان هایی همچون اسنپ و دیجی کالا و ... وب اپلیکیشن و برندینگ _ از ایده تا اجرا</p>
+
+      <div class="cta">
+        <button class="btn" onclick="scrollToSection('contact')">ثبت سفارش و درخواست</button>
+        <button class="btn secondary" onclick="scrollToSection('works')">نمونه پروژه های اجرا شده</button>
+      </div>
+
+      <div style="margin-top:18px;display:flex;gap:12px;align-items:center">
+        <div class="skill-pill">Digital Marketing</div>
+        <div class="skill-pill">Front-end</div>
+        <div class="skill-pill">Branding</div>
+      </div>
+    </div>
+
+    <aside class="infos card" aria-label="اطلاعات">
+      <div class="profile">
+        <div class="avatar">AS</div>
+        <div>
+          <div style="font-weight:700">Arka Studios</div>
+          <div style="font-size:13px;color:var(--muted)">استودیو طراحی و توسعه برند شما</div>
+        </div>
+      </div>
+
+      <div class="card" style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-weight:700">خدمات کلیدی</div>
+        <div style="font-size:14px;color:var(--muted)">طراحی UI/UX — توسعه صفحات واکنش‌گرا — وب‌اپ‌های SPA — بهینه‌سازی عملکرد</div>
+      </div>
+
+      <div class="card" style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-weight:700">راه‌های ارتباطی</div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="width:18px;height:18px"/>
+          <span>arka.studios04</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" style="width:18px;height:18px"/>
+          <span>youtube.com/@arkastudios</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/phone.svg" alt="Phone" style="width:18px;height:18px"/>
+          <span>0912-025-1253</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- Services Section -->
+<section id="services" aria-labelledby="services-title">
+  <div>
+    <div style="display:flex;justify-content:space-between;align-items:end">
+      <div>
+        <h3 id="services-title" style="margin:0">خدمات ما</h3>
+        <p style="color:var(--muted);margin:8px 0 18px 0">بسته‌های مقیاس‌پذیر برای استارتاپ تا سازمان</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+      <div class="card">
+        <div style="font-weight:800">طراحی UI/UX</div>
+        <p>تحقیق کاربری، وایرفریم، نمونه تعاملی و طراحی رابط زیبا و قابل استفاده.</p>
+      </div>
+      <div class="card">
+        <div style="font-weight:800">Front-end</div>
+        <p>HTML5، CSS مدرن، انیمیشن‌های بهینه، و JS خوانا برای تجربه‌ی سریع.</p>
+      </div>
+      <div class="card">
+        <div style="font-weight:800">Back-end & DevOps</div>
+        <p>راه‌اندازی سرور، API امن، اتوماسیون استقرار و مانیتورینگ.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:18px" class="card">
+      <div style="font-weight:800">چرا Arka؟</div>
+      <p style="color:var(--muted)">کار تمیز، طراحی متناسب با هویت برند، توجه به سرعت و سئو. تیم ما نتیجه‌محور است و تحویل به‌موقع را جدی می‌گیریم.</p>
+    </div>
+  </div>
+
+  <aside class="card">
+    <div style="font-weight:800">آمار سریع</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+      <div><strong>+5000</strong> پروژه موفق</div>
+      <div><strong>95%</strong> رضایت مشتری</div>
+      <div><strong>8</strong> سال تجربه‌کاری</div>
+    </div>
+  </aside>
+</section>
+
+<!-- Works Section -->
+<section id="works" aria-labelledby="works-title">
+  <div>
+    <h3 id="works-title">نمونه‌کارهای منتخب</h3>
+    <p style="color:var(--muted)">چند پروژه‌ای که طراحی و اجرا کردیم — واکنش‌گرا، سریع و زیبا.</p>
+
+    <div class="projects">
+      <div class="project card">
+        <h4>فروشگاه آنلاین مد</h4>
+        <p>UI مدرن، فیلتر پیشرفته، پرداخت یک‌صفحه‌ای.</p>
+      </div>
+      <div class="project card">
+        <h4>پلتفرم آموزشی</h4>
+        <p>تجربه یادگیری تعاملی، زیرساخت مقیاس‌پذیر.</p>
+      </div>
+      <div class="project card">
+        <h4>سایت معرفی استارتاپ</h4>
+        <p>میکروسایت برند، لندینگ با تبدیل بالا.</p>
+      </div>
+      <div class="project card">
+        <h4>داشبورد مدیریت</h4>
+        <p>ویجت‌های زنده، گزارش‌گیری و کنترل دسترسی.</p>
+      </div>
+    </div>
+  </div>
+
+  <aside class="card">
+    <div style="font-weight:800">فرآیند همکاری</div>
+    <ol style="color:var(--muted);padding-left:14px">
+      <li>کشف و هدف‌گذاری</li>
+      <li>طراحی و نمونه‌سازی</li>
+      <li>توسعه و تست</li>
+      <li>تحویل و پشتیبانی</li>
+    </ol>
+  </aside>
+</section>
+
+<!-- Team Section -->
+<section id="team" aria-labelledby="team-title">
+  <div>
+    <h3 id="team-title">تیم ما</h3>
+    <p style="color:var(--muted)">تیم حرفه‌ای با تخصص‌های متنوع در طراحی و توسعه.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div class="card profile">
+        <div class="avatar">AJ</div>
+        <div>
+          <div style="font-weight:700">علی جعفری</div>
+          <div style="color:var(--muted)">طراح UI/UX</div>
+        </div>
+      </div>
+      <div class="card profile">
+        <div class="avatar">AT</div>
+        <div>
+          <div style="font-weight:700">امیرحسین تقی زاده</div>
+          <div style="color:var(--muted)">توسعه‌دهنده Front-end</div>
+        </div>
+      </div>
+      <div class="card profile">
+        <div class="avatar">ZM</div>
+        <div>
+          <div style="font-weight:700">زینب مروارید</div>
+          <div style="color:var(--muted)">توسعه‌دهنده Back-end</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" aria-labelledby="contact-title">
+  <div>
+    <h3 id="contact-title">تماس با ما</h3>
+    <p style="color:var(--muted)">برای همکاری یا سفارش پروژه، فرم زیر را پر کنید همکاران ما در اسرع وقت با شما تماس خواهند گرفت.</p>
+
+    <form>
+      <input type="text" placeholder="نام شما" required />
+      <input type="email" placeholder="ایمیل شما" required />
+      <textarea placeholder="پیام شما" required></textarea>
+      <button type="submit" class="btn">ارسال پیام</button>
+    </form>
+  </div>
+
+  <aside class="card">
+    <div style="font-weight:800">اطلاعات تماس</div>
+    <p style="color:var(--muted)">0912-025-1253</p>
+    <p style="color:var(--muted)">arka.studios04 (Instagram)</p>
+    <p style="color:var(--muted)">youtube.com/@arkastudios</p>
+  </aside>
+</section>
+
+<footer>
+  <div>© 2025 Arka Studios. همه حقوق محفوظ است.</div>
+  <div>طراحی و توسعه  توسط تیم Arka</div>
+</footer>
+
+</div>
+
+<script>
+function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+
+// ستاره‌ها
+const starfield = document.getElementById('starfield');
+for(let i=0;i<60;i++){
+  const star = document.createElement('div');
+  star.className='star';
+  star.style.top=Math.random()*100+'%';
+  star.style.left=Math.random()*100+'%';
+  star.style.animationDelay=(Math.random()*3)+'s';
+  star.style.width=(Math.random()*6+2)+'px';
+  star.style.height=star.style.width;
+  starfield.appendChild(star);
+}
+
+// تغییر تم
+const themeBtn=document.getElementById('themeToggle');
+themeBtn.addEventListener('click',()=>{
+  document.body.classList.toggle('light');
+  themeBtn.textContent=document.body.classList.contains('light')?'حالت تاریک':'حالت روشن';
+});
+
+// منوی کشویی
+const dropBtns = document.querySelectorAll('.drop-btn');
+dropBtns.forEach(btn => {
+  btn.addEventListener('click', e => {
+    const dropdown = btn.nextElementSibling;
+    const isVisible = dropdown.style.display === 'block';
+    document.querySelectorAll('.dropdown').forEach(d => d.style.display = 'none');
+    dropdown.style.display = isVisible ? 'none' : 'block';
+  });
+});
+window.addEventListener('click', e => {
+  if(!e.target.matches('.drop-btn')){
+    document.querySelectorAll('.dropdown').forEach(d => d.style.display = 'none');
+  }
+});
+</script>
+</body>
+</html>
